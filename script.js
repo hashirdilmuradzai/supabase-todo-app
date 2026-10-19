@@ -1,18 +1,29 @@
 const todoInput = document.querySelector("#todo-input");
 const todoOutput = document.querySelector("#todo-output");
+const supabaseURL = "https://baiatiwucgslosyrtfuv.supabase.co";
+const supabaseKey = "sb_publishable_4RKSX2Eq2zYTjWiEPEu6vg_b1pRjN37";
 
-const todo = (event) => {
+const supabaseClient = supabase.createClient(supabaseURL, supabaseKey);
+
+const todo = async (event) => {
   event.preventDefault();
+
+  const todo = todoInput.value;
+  todoInput.value = "";
+
+  await supabaseClient.from("todos").insert({ todo: todo });
 
   showTodo();
 };
 
-const showTodo = () => {
+const showTodo = async () => {
   todoOutput.innerHTML = "";
-  const todos = todoInput.value;
-  todoInput.value = "";
 
-  //   for (let i = 0; i < todos.length; i++) {
-  todoOutput.innerHTML += `<li>${todos} <button><i class="fa-solid fa-x"></i></button></li>`;
-  //   }
+  const response = await supabaseClient.from("todos").select("*");
+  const todos = response.data;
+
+  for (let i = 0; i < todos.length; i++) {
+    todoOutput.innerHTML += `<li>${todos[i].todo} <button onclixk><i class="fa-solid fa-x"></i></button></li>`;
+  }
 };
+showTodo();
