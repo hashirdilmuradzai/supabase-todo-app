@@ -23,7 +23,20 @@ const showTodo = async () => {
   const todos = response.data;
 
   for (let i = 0; i < todos.length; i++) {
-    todoOutput.innerHTML += `<li>${todos[i].todo} <button onclixk><i class="fa-solid fa-x"></i></button></li>`;
+    todoOutput.innerHTML += `<li>${todos[i].todo} <button onclick="deleteTodo(${todos[i].id})"><i class="fa-solid fa-x"></i></button></li>`;
   }
 };
 showTodo();
+
+const deleteTodo = async (id) => {
+  const response = await supabaseClient.from("todos").delete().eq("id", id);
+
+  console.log(response);
+
+  if (!response.error) {
+    alert("Successfully Deleted");
+    showTodo();
+  } else {
+    ("Please try again");
+  }
+};
