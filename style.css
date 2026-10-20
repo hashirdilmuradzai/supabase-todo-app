@@ -72,6 +72,9 @@
   user-select: none;
   cursor: pointer;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .todo-app ul li::before {
@@ -96,14 +99,17 @@
   background-image: url(./images/checked.png);
 }
 
+.btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .todo-app ul li button {
   border: none;
   outline: none;
   background: transparent;
   cursor: pointer;
-  position: absolute;
-  right: 0;
-  top: 5px;
   width: 30px;
   height: 30px;
   font-size: 16px;
