@@ -23,9 +23,22 @@ const showTodo = async () => {
   const todos = response.data;
 
   for (let i = 0; i < todos.length; i++) {
-    todoOutput.innerHTML += `<li>${todos[i].todo} <button onclick="deleteTodo(${todos[i].id})"><i class="fa-solid fa-x"></i></button></li>`;
+    todoOutput.innerHTML += `<li data-id="${todos[i].id}">${todos[i].todo} <button onclick="deleteTodo(${todos[i].id})"><i class="fa-solid fa-x"></i></button></li>`;
   }
 };
+
+todoOutput.addEventListener("click", async (e) => {
+  if (e.target.tagName === "LI") {
+    e.target.classList.toggle("checked");
+  }
+  const response = await supabaseClient
+    .from("todos")
+    .update({ is_completed: e.target.classList.contains("checked") })
+    .eq("id", e.target.dataset.id);
+
+  console.log(response);
+});
+
 showTodo();
 
 const deleteTodo = async (id) => {
