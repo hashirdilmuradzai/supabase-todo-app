@@ -10,16 +10,20 @@
 .container {
   width: 100%;
   min-height: 100vh;
-  background: linear-gradient(135deg, #153677, #4e085f);
-  padding: 10px;
+  padding: 20px;
+  /* background: linear-gradient(135deg, #153677, #4e085f); */
+  background: url(./images/bg.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 .todo-app {
   width: 100%;
   max-width: 540px;
   background-color: #fff;
-  padding: 40px 30px 70px 30px;
-  margin: 100px auto 20px auto;
+  padding: 40px;
+  margin: 40px auto;
   border-radius: 10px;
 }
 
@@ -31,7 +35,7 @@
 }
 
 .todo-app h1 img {
-  width: 30px;
+  width: 50px;
   margin-left: 10px;
 }
 
@@ -122,4 +126,34 @@
 
 .todo-app ul li button:hover {
   background-color: #edeef0;
+}
+
+.hide {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .todo-app {
+    margin: auto;
+    padding: 20px;
+  }
+
+  .todo-app form {
+    flex-wrap: wrap;
+    padding: 0;
+  }
+
+  .todo-app input {
+    text-align: center;
+    padding: 16px 50px !important;
+  }
+
+  .todo-app form button {
+    flex: 1;
+  }
+
+  .todo-app ul li {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
 }
