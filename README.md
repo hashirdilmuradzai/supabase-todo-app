@@ -72,4 +72,4 @@ It also demonstrates how to synchronize user interactions with a backend databas
 
 ## 👨‍💻 Author
 
-**Hashir**
+**Hashir Dilmurad Zai**
